@@ -17,6 +17,14 @@ def getLFSR():
     return lfsr
 
 def subSequences(lfsr):
+    """
+    Finds all subsequences of a given LFSR.
+
+    Parameters
+    ----------
+    lfsr : list
+        The LFSR of which all subsequnces are to be found.
+    """
     allSequences = []
 
     for item in itertools.product([0, 1], repeat= len(lfsr)):
@@ -32,6 +40,7 @@ def subSequences(lfsr):
             history.append(currentSequence)
             for i in range(0,len(lfsr)):
                 result = (result + (currentSequence[i]*lfsr[i])) % 2
+
             newSequence = currentSequence[1:]
             newSequence.append(result)
             currentSequence = newSequence
@@ -44,6 +53,14 @@ def subSequences(lfsr):
     print("Lenghts of subsequences: %s " %(subSequencesLength))
 
 def draw(lfsr):
+    """
+    Draws a given LFSR using tikz and prints tikz commands to console.
+
+    Parameters
+    ----------
+    lfsr : list
+        The LFSR of which all subsequnces are to be found.
+    """
     counter = 0
     listOfXors = []
     listOfBoxes = []
@@ -83,6 +100,14 @@ def draw(lfsr):
     print(r"\end{tikzpicture}")
 
 def matrix(lfsr):
+    """
+    Computes the matrix corresponding to the input LFSR.
+
+    Parameters
+    ----------
+    lfsr : list
+        The LFSR of which the matrix is to be found.
+    """
     n = len(lfsr)
     identity = np.identity(n)       #start with identity
     matrix = np.roll(identity, (-1,0))      #'roll' the matrix downwards
