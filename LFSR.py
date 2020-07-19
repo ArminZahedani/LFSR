@@ -70,23 +70,23 @@ def draw(lfsr):
         print(r"\node[draw,align=left,minimum size=1cm] (%s) at (%s ,0) {$S_{i+%s}$};" % (i, 2*i ,i))       #draws boxes of S_i
         if i == len(lfsr)-1:
             lastBox = i
-            print(r"\coordinate (end) at ($ (%s) + (2,0)$));" % (i))        #coordinate of very last box
+            print(r"\coordinate (end) at ($ (%s) + (2, 0)$);" % (i))        #coordinate of very last box
         listOfBoxes.append('%s' %(i))                               #keeps track of the boxes
         if lfsr[i] == 1:    #if the box is 'enabled'
             if i!= 0:       #and it is not the very first box
                 counter += 1
                 listOfXors.append('xor%s' %(i))
-                print(r"\node[draw,align=left,minimum size=0.5cm, shape = circle] (xor%s) at (%s ,2) {$+$};" % (i, 2 * i))      #prints the xor symbols above each S_i needed
+                print(r"\node[draw,align=left,minimum size=0.5cm, shape = circle] (xor%s) at (%s, 2) {$+$};" % (i, 2 * i))      #prints the xor symbols above each S_i needed
                 print(r"\draw[<-, line width = 0.5mm] (xor%s) -- (%s);" % (i, i))   #prints lines connecting xors and nodes
                 if counter == 1:
-                    print(r"\draw[->, line width = 0.5mm] (0,2) -- (xor%s);" % (i)) #if the counter=1, connect S_{i} with the first xor
+                    print(r"\draw[->, line width = 0.5mm] (0, 2) -- (xor%s);" % (i)) #if the counter=1, connect S_{i} with the first xor
             else:
-                print(r"\draw[line width = 0.5mm] (0,2) -- (%s);" % (i))
+                print(r"\draw[line width = 0.5mm] (0, 2) -- (%s);" % (i))
     for i in listOfXors:
         if i != listOfXors[len(listOfXors)-1]:
                 print(r"\draw[->, line width = 0.5mm] (%s) -- (%s);" % (i, listOfXors[listOfXors.index(i)+1]))
         else:
-                print(r"\coordinate (end1) at ($ (%s) + (2,0)$));" % (i))
+                print(r"\coordinate (end1) at ($ (%s) + (2, 0)$);" % (i))
                 print(r"\draw[line width = 0.5mm] (end1)  -- (%s);" % (i))
                 print(r"\draw[line width = 0.5mm] (end)  -- (end1);")
                 print(r"\draw[->, line width = 0.5mm] (end)  -- (%s);" %(lastBox))
